@@ -1,3 +1,4 @@
 A sample command-line application with an entrypoint in `bin/`, library code
 in `lib/`, and example unit test in `test/`.
-https://docs.google.com/document/d/1aWUOosukznrYmOMmZ0jvPUnh2PU_C3TarfVQDuxiFQc/edit?usp=sharing
+API MARVEL
+Utiliza la API de Marvel para mostrar una lista de personajes de Marvel y permite a los usuarios ver detalles como biografía, poderes y cómics en los que aparecen.
