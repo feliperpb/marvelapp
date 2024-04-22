@@ -1,4 +1,7 @@
 
-API MARVEL
-Utiliza la API de Marvel para mostrar una lista de personajes de Marvel y permite a los usuarios ver detalles como biografía, poderes y cómics en los que aparecen.
- sección de trivia donde los usuarios puedan poner a prueba sus conocimientos sobre los personajes de Marvel con preguntas divertidas y desafiantes.
+API tienda zapas
+una api de una tienda que contiene
+ una descrippcion de los productos con su precio talla, disponibilidad...
+ un registro de llegada de pedidos 
+ 
+
