@@ -60,7 +60,7 @@ class Database {
 
   _crearTablainventario(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS inventario(
-      id_pedidos INT PRIMARY KEY AUTO_INCREMENT,
+      id_inventario INT PRIMARY KEY AUTO_INCREMENT,
       id_producto INT,
       cantidad_stock INT,
       ubicacion_almacen VARCHAR(50),
@@ -70,11 +70,15 @@ class Database {
   }
    _crearTablapedidos(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS pedidos(
-      id_pedidos INT PRIMARY KEY AUTO_INCREMENT,
-      id_producto INT,
-      cantidad_stock INT,
-      ubicacion_almacen VARCHAR(50),
-       FOREIGN KEY(id_producto) REFERENCES productos(id_producto)
+    id_pedidos INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente INT,
+    fecha_pedido DATE,
+    fecha_envio DATE,
+    fecha_entrega DATE,
+    estado_pedido VARCHAR(20),
+    info_envio TEXT,
+    info_pago TEXT,
+      FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
       )''');
     print('Tabla pedidos creada');
   }
@@ -112,7 +116,9 @@ class Database {
     apellidos VARCHAR(50) NOT NULL,
     funcion VARCHAR(50),
     telefono VARCHAR(15),
-    correo_electronico VARCHAR(50)
+    correo_electronico VARCHAR(50),
+    contraseña VARCHAR(50),
+    Rango INT (50)
       )''');
     print('Tabla equipo creada');
   }
