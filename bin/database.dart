@@ -1,7 +1,4 @@
 import 'package:mysql1/mysql1.dart';
- main() {
-  
-}
 
 class Database {
   // Propiedades
@@ -22,6 +19,9 @@ class Database {
       await _crearTablaproductos(conn);
       await _crearTablainventario(conn);
       await _crearTablapedidos(conn);
+      await _crearTablaproveedores(conn);
+      await _crearTablaclientes(conn);
+      await _crearTablaequipo(conn);
       await conn.close();
     } catch(e){
       print(e);
@@ -53,26 +53,28 @@ class Database {
       tipo_calzado VARCHAR(50) NOT NULL,
       talla VARCHAR(10) NOT NULL,
       color VARCHAR(20) NOT NULL,
-      precio DECIMAL(10,2) NOT NULL,
+      precio DECIMAL(10,2) NOT NULL
       )''');
     print('Tabla productos creada');
   }
 
   _crearTablainventario(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS inventario(
-      id INT PRIMARY KEY AUTO_INCREMENT,
+      id_pedidos INT PRIMARY KEY AUTO_INCREMENT,
       id_producto INT,
       cantidad_stock INT,
-      ubicacion_almacen VARCHAR(50)
+      ubicacion_almacen VARCHAR(50),
+       FOREIGN KEY(id_producto) REFERENCES productos(id_productos)
       )''');
     print('Tabla inventario creada');
   }
    _crearTablapedidos(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS pedidos(
-      id INT PRIMARY KEY AUTO_INCREMENT,
+      id_pedidos INT PRIMARY KEY AUTO_INCREMENT,
       id_producto INT,
       cantidad_stock INT,
-      ubicacion_almacen VARCHAR(50)
+      ubicacion_almacen VARCHAR(50),
+       FOREIGN KEY(id_producto) REFERENCES productos(id_producto)
       )''');
     print('Tabla pedidos creada');
   }
@@ -92,7 +94,7 @@ class Database {
   }
    _crearTablaproveedores(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS proveedor(
-     id_proveedorNT PRIMARY KEY AUTO_INCREMENT,
+     id_proveedor INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     contacto VARCHAR(50),
     direccion VARCHAR(100),
@@ -101,24 +103,19 @@ class Database {
     telefono VARCHAR(15),
     correo_electronico VARCHAR(50)
       )''');
-    print('Tabla inventario creada');
+    print('Tabla proveedor creada');
   }
-   _crearTablainventario(conn) async {
-    await conn.query('''CREATE TABLE IF NOT EXISTS mascotas(
-      id INT PRIMARY KEY AUTO_INCREMENT,
-      id_producto INT,
-      cantidad_stock INT,
-      ubicacion_almacen VARCHAR(50)
+   _crearTablaequipo(conn) async {
+    await conn.query('''CREATE TABLE IF NOT EXISTS equipo(
+     id_equipos INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    funcion VARCHAR(50),
+    telefono VARCHAR(15),
+    correo_electronico VARCHAR(50)
       )''');
-    print('Tabla inventario creada');
+    print('Tabla equipo creada');
   }
-   _crearTablainventario(conn) async {
-    await conn.query('''CREATE TABLE IF NOT EXISTS mascotas(
-      id INT PRIMARY KEY AUTO_INCREMENT,
-      id_producto INT,
-      cantidad_stock INT,
-      ubicacion_almacen VARCHAR(50)
-      )''');
-    print('Tabla inventario creada');
-  }
+ 
+  
 }
