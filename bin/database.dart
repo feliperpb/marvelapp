@@ -112,8 +112,8 @@ class Database {
    _crearTablaequipo(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS equipo(
      id_equipos INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50) NOT NULL,
-    apellidos VARCHAR(50) NOT NULL,
+    nombre VARCHAR(50) ,
+    apellidos VARCHAR(50) ,
     funcion VARCHAR(50),
     telefono VARCHAR(15),
     correo_electronico VARCHAR(50),

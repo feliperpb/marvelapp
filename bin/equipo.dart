@@ -4,17 +4,17 @@ import 'app.dart';
 import 'database.dart';
 
 class Equipo{
-
+  int? idusuario;
   String? _nombre;
   String? _apellidos;
   String? _funcion;
   String? _telefono;
   String? _correo_electronico;
   String? _clave;
-  String? _rango;
- String? get rango => this._rango;
+  int? _rango;
+  int? get rango => this._rango;
 
- set rango(String? value) => this._rango = value;
+ set rango(int? value) => this._rango = value;
  
  String? get clave => this._clave;
 
@@ -83,8 +83,9 @@ class Equipo{
     var conn = await Database().conexion();
     try {
       var resultado = await conn
-          .query('SELECT * FROM usuarios WHERE nombre = ?', [this._nombre]);
+          .query('SELECT * FROM equipo WHERE nombre = ?', [this._nombre]);
       Equipo equipo = Equipo.fromMap(resultado.first);
+       
       if (this._clave == equipo.clave) {
         return equipo;
       } else
@@ -96,6 +97,7 @@ class Equipo{
       await conn.close();
     }
   }
+  
   compruebarango()async{
     var conn = await Database().conexion();
     try {
@@ -112,24 +114,28 @@ class Equipo{
       await conn.close();
     }
   }
-  /*crearUsuario() async {
+ 
+   crearUsuario() async {
     Equipo equipo = new Equipo();
     stdout.writeln('Introduce un nombre de usuario');
-    equipo.nombre = stdin.readLineSync();
+    nombre = stdin.readLineSync();
     stdout.writeln('Introduce una constraseña');
-    equipo.clave = stdin.readLineSync();
-    equipo.clave = equipo.clave;
+    clave =  stdin.readLineSync();
+    clave = clave;
     stdout.writeln('introduce los apellidos');
-    equipo.apellidos = stdin.readLineSync();
+    apellidos = stdin.readLineSync();
     stdout.writeln('introduce correo electronico ');
-    equipo.correo_electronico = stdin.readLineSync();
+    correo_electronico = stdin.readLineSync();
     stdout.writeln('introduce la funcion en la empresa');
-    equipo._correo_electronico = stdin.readLineSync();
+    funcion = stdin.readLineSync();
     stdout.writeln('introduce tu telefono');
-    equipo.telefono = stdin.readLineSync();
+    telefono = stdin.readLineSync();
     stdout.writeln('introduce el rango');
-    equipo.rango = stdin.readLineSync();
+    var respuesta = stdin.readLineSync();
+    rango =  int.tryParse(respuesta!);
+  
     await insertarEmpleado();
     app().menuInicial();
-  }*/
+  }
+  
 }
