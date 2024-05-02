@@ -1,9 +1,8 @@
- import 'database.dart';
- import 'equipo.dart';
- import 'app.dart';
- import 'equipo.dart';
+import 'app.dart';
+import 'database.dart';
+import 'producto.dart';
 main()async {
- 
+app().listarProductos();;
 
   
 }

@@ -50,6 +50,7 @@ class Database {
   _crearTablaproductos(conn) async {
     await conn.query(''' CREATE TABLE IF NOT EXISTS productos(
       id_producto INT PRIMARY KEY AUTO_INCREMENT,
+      modelo VARCHAR (50) NOT NULL,
       tipo_calzado VARCHAR(50) NOT NULL,
       talla VARCHAR(10) NOT NULL,
       color VARCHAR(20) NOT NULL,

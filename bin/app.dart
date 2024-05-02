@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'equipo.dart';
+import 'producto.dart';
 
 class app{
 
@@ -46,9 +47,14 @@ class app{
       print('ssssssssssssssssssi');
     }
   }
-  listarproductos(){
-    
+ 
+     listarProductos()async{
+    List<Producto> listadoProductos = await Producto().all();
+    for(Producto elemento in listadoProductos){
+      stdout.writeln(listadoProductos);
+    }
   }
+  
   
 
 
