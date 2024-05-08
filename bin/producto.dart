@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'app.dart';
@@ -8,7 +9,7 @@ import 'package:mysql1/mysql1.dart';
 
 class Producto{
 String? _tipo_calzado;
-int? _talla;
+String? _talla;
 String? _color;
 double? _precio;
 String? _modelo;
@@ -21,21 +22,24 @@ String? _modelo;
  String? get tipo_calzado => this._tipo_calzado;
 
  set tipo_calzado(String? value) => this._tipo_calzado = value;
+   String? get talla => this._talla;
 
- int? get talla => this._talla;
-
- set talla(int? value) => this._talla = value;
-
- String? get color => this._color;
+  set talla(String? value) => this._talla = value;
+   String? get color => this._color;
 
  set color(String? value) => this._color = value;
 
- double? get precio => this._precio;
+
+  double? get precio => this._precio;
 
  set precio(double? value) => this._precio = value;
+
+
+
+ 
     Producto();
 
-  Producto.fromMap(ResultRow map) {
+  Producto. fromMap(ResultRow map) {
     this._tipo_calzado = map['tipo_calzado'];
     this._talla = map['talla'];
     this._color = map['color'];
@@ -81,14 +85,13 @@ String? _modelo;
     stdout.writeln('Introduce el tipo de calzado');
     tipo_calzado = stdin.readLineSync();
     stdout.writeln('introduce la talla');
-    var respuesta = stdin.readLineSync();
-    talla =  int.tryParse(respuesta!);
+    talla = stdin.readLineSync();
     stdout.writeln('introduce el color');
     color = stdin.readLineSync();
     stdout.writeln('introduce el precio ');
-    var elprecio = stdin.readLineSync();
-    precio =  double.tryParse(elprecio!);
-     stdout.writeln('Introduce el tipo de modelo');
+        var elprecio = stdin.readLineSync();
+    precio =  double.tryParse(elprecio!); 
+    stdout.writeln('Introduce el tipo de modelo');
     modelo = stdin.readLineSync();
     await insertarProducto();
     app().menuInicial();

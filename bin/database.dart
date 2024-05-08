@@ -22,6 +22,7 @@ class Database {
       await _crearTablaproveedores(conn);
       await _crearTablaclientes(conn);
       await _crearTablaequipo(conn);
+      await _creartablaventas(conn);
       await conn.close();
     } catch(e){
       print(e);
@@ -57,6 +58,18 @@ class Database {
       precio DECIMAL(10,2) NOT NULL
       )''');
     print('Tabla productos creada');
+  }
+
+  _creartablaventas(conn) async{
+    await conn.query('''CREATE TABLE IF NOT EXISTS ventas(
+      id_venta INT PRIMARY KEY AUTO_INCREMENT,
+    id_producto INT,
+    cantidad INT,
+    total DOUBLE(10, 2),
+    fecha TIMESTAMP,
+    FOREIGN KEY (id_producto) REFERENCES productos(id_productos)
+)''');
+print("tabla ventas cread<");
   }
 
   _crearTablainventario(conn) async {

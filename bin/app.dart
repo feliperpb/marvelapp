@@ -51,7 +51,7 @@ class app{
      listarProductos()async{
     List<Producto> listadoProductos = await Producto().all();
     for(Producto elemento in listadoProductos){
-      stdout.writeln(listadoProductos);
+      stdout.writeln("${elemento.modelo} - ${elemento.tipo_calzado}");
     }
   }
   
@@ -62,4 +62,5 @@ class app{
    
    
  
+
 }
